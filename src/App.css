@@ -1,0 +1,18 @@
+.navigation-bar li {
+	display: inline;
+}
+
+.entity-card {
+	width: 100px;
+}
+
+.entity-card-details {
+	white-space: nowrap;
+	text-overflow: ellipsis;
+	width: 200px;
+	overflow: hidden;
+}
+
+.entity-card-description {
+	text-overflow: ellipsis;
+}
