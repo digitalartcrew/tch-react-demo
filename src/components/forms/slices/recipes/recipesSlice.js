@@ -44,9 +44,12 @@ const recipesReducer = (state = initialState, action) => {
         ...state,
         recipes: [
           ...state.recipes,
-          {
-            /// the new one
-          },
+          
+            {
+              nextRecipeId,
+              ...action.payload
+
+            }
         ],
       };
     }

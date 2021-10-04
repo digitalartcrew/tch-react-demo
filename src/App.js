@@ -31,7 +31,7 @@ const App = () => {
   useEffect(() => {
 	getRecipes();
 
-  },[recipeCollection])
+  },[])
 
   return (
     <Router>

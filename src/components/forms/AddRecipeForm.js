@@ -1,7 +1,9 @@
 // import { withRouter } from 'react-router-dom'; // <--- import `withRouter`. We will use this in the bottom of our file.
-import recipes from "../../recipes";
 import React, { useState } from "react";
-import store from "../../store";
+import { createStore } from 'redux';
+import rootReducer from "../../reducer";
+
+const store = createStore(rootReducer);
 
 const AddRecipeForm = ({ history }) => {
   const [formData, setFormData] = useState({
@@ -10,17 +12,16 @@ const AddRecipeForm = ({ history }) => {
     description: "",
   });
 
-  const handleSubmit = () => {
+  const handleSubmit = (event) => {
+      debugger;
     console.log(store.getState());
 
     store.dispatch({
       type: "recipes/recipeAdded",
       payload: {
-        id: 5,
-        imageSrc: "https://via.placeholder.com/200x200",
-        title: "The Best Chicken",
-        description:
-          "Lorem ipsum, dolor sit amet consectetur adipisicing elit. Enim, vero quisquam magnam voluptatibus minus asperiores excepturi distinctio voluptas! Sint at facilis alias suscipit aut quia ea in sequi quisquam nulla!",
+        imageSrc: formData.imageSrc,
+        title: formData.title,
+        description: formData.description
       },
     });
 
@@ -30,6 +31,7 @@ const AddRecipeForm = ({ history }) => {
 
     // recipes.push({...formData});
     // console.log("Updated recipes", recipes );
+
   };
 
   return (
