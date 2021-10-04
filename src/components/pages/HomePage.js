@@ -1,11 +1,11 @@
-import EntityCard from "../cards/EntityCard";
+import Card from "../entity/Card";
 
 const HomePage = ({ collection }) => {
 	return (
 		<div className="home-page-container">
 			<div className="card-container">
 				{collection.map((recipe) => (
-					<EntityCard entity={recipe} key={recipe.id} />
+					<Card entity={recipe} key={recipe.id} />
 				))}
 			</div>
 		</div>
