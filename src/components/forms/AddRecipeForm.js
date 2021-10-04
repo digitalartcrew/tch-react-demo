@@ -1,11 +1,17 @@
-import { withRouter } from 'react-router-dom'; // <--- import `withRouter`. We will use this in the bottom of our file.
+// import { withRouter } from 'react-router-dom'; // <--- import `withRouter`. We will use this in the bottom of our file.
+import recipes from "../../recipes";
+import React, { useState } from "react";
 
 const AddRecipeForm  = ({history}) => {
 	const [formData, setFormData] = useState({imageSrc: '', title: '', description: ''});
 
 	const handleSubmit = () => {
-		console.log("Form data:", recipes.push(formData));
-		history.push('/');
+     
+        formData.id = recipes[recipes.length - 1].id + 1;
+
+        recipes.push({...formData});
+		console.log("Updated recipes", recipes );
+    
 	}
   
 	  return (
@@ -27,4 +33,4 @@ const AddRecipeForm  = ({history}) => {
 	  );
   }
 
-  export default withRouter(AddRecipeForm);
+  export default AddRecipeForm;
