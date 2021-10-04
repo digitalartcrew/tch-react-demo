@@ -1,12 +1,37 @@
 import "./App.css";
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import AddRecipeForm from "./components/forms/AddRecipeForm";
 import { BrowserRouter as Router, Switch, Route, Link } from "react-router-dom";
-import recipes from "./recipes";
+
 
 const App = () => {
  
-  const [recipeCollection, setRecipeCollection] = useState([...recipes]);
+  const [recipeCollection, setRecipeCollection] = useState([]);
+
+  const getRecipes =()=> {
+    fetch('data/recipes.json'
+    ,{
+      headers : { 
+        'Content-Type': 'application/json',
+        'Accept': 'application/json'
+       }
+    }
+    )
+      .then(response =>{
+        console.log(response)
+        return response.json();
+      })
+      .then(recipes => {
+        console.log(recipes);
+        setRecipeCollection([...recipes])
+      });
+	}
+  
+
+  useEffect(() => {
+	getRecipes();
+
+  },[recipeCollection])
 
   return (
     <Router>
