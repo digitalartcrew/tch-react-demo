@@ -1,4 +1,5 @@
 import EntityRow from "../entity/Row";
+import EntityCard from "../entity/Card";
 
 const HomePage = ({ collection }) => {
 	const columnCount = 4;
@@ -19,7 +20,17 @@ const HomePage = ({ collection }) => {
 						key={index}
 						columnCount={columnCount}
 						collection={newCollection}
-					/>
+					>
+						<>
+							{[...newCollection].map((entity, index) => (
+								<EntityCard
+									columnCount={columnCount}
+									entity={entity}
+									key={index}
+								/>
+							))}
+						</>
+					</EntityRow>
 				);
 			})}
 		</div>
