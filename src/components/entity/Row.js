@@ -2,13 +2,17 @@ import Row from "react-bootstrap/Row";
 import EntityCard from "../entity/Card";
 
 const EntityRow = ({ collection, columnCount }) => {
-	const columnClass = `col-${12 / columnCount}`;
+	let positionCount = 0;
+	const collectionSet = [
+		...collection.slice(positionCount, positionCount + columnCount),
+	];
 
+	positionCount = positionCount + columnCount;
 	return (
 		<Row>
-			{collection.map((entity, index) =>
+			{collectionSet.map((entity, index) =>
 				index < columnCount ? (
-					<EntityCard columnClass={columnClass} entity={entity} key={index} />
+					<EntityCard columnCount={columnCount} entity={entity} key={index} />
 				) : null
 			)}
 		</Row>

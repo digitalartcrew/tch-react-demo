@@ -1,7 +1,9 @@
 import Card from "react-bootstrap/Card";
 import Button from "react-bootstrap/Button";
 
-const EntityCard = ({ entity, columnClass }) => {
+const EntityCard = ({ entity, columnCount }) => {
+	const columnClass = `col-${12 / columnCount}`;
+
 	return (
 		<Card className={columnClass}>
 			<Card.Img variant="top" src={entity.imageSrc} />
