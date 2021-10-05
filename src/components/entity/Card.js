@@ -2,7 +2,7 @@ import Card from "react-bootstrap/Card";
 import Button from "react-bootstrap/Button";
 
 const EntityCard = ({ entity, columnCount }) => {
-	const columnClass = `col-${12 / columnCount}`;
+	const columnClass = `col-md-${12 / columnCount}`;
 
 	return (
 		<Card className={columnClass}>
