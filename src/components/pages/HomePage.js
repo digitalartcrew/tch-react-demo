@@ -1,16 +1,26 @@
 import EntityRow from "../entity/Row";
 import EntityCard from "../entity/Card";
+import React, { useState, useEffect } from "react";
+import { getRecipes } from "../../api/recipe-api";
 
-const HomePage = ({ collection }) => {
+const HomePage = () => {
+	const [recipeCollection, setRecipeCollection] = useState([]);
+
 	const columnCount = 4;
-	const rowCount = Math.ceil(collection.length / columnCount);
 	let positionCount = 0;
+	const rowCount = recipeCollection.length / columnCount;
+
+	useEffect(() => {
+		getRecipes()
+			.then((response) => response.json())
+			.then((recipes) => setRecipeCollection(recipes));
+	}, []);
 
 	return (
 		<div className="home-page-container">
 			{Array.from(Array(rowCount)).map((x, index) => {
 				const newCollection = [
-					...collection.slice(positionCount, positionCount + columnCount),
+					...recipeCollection.slice(positionCount, positionCount + columnCount),
 				];
 
 				positionCount = positionCount + columnCount;
@@ -27,6 +37,7 @@ const HomePage = ({ collection }) => {
 									columnCount={columnCount}
 									entity={entity}
 									key={index}
+									linkUrl={`/recipe/${entity.id}`}
 								/>
 							))}
 						</>

@@ -1,7 +1,8 @@
 import Card from "react-bootstrap/Card";
 import Button from "react-bootstrap/Button";
+import { Link } from "react-router-dom";
 
-const EntityCard = ({ entity, columnCount }) => {
+const EntityCard = ({ entity, columnCount, linkUrl }) => {
 	const columnClass = `entity-card col-md-${12 / columnCount}`;
 
 	return (
@@ -12,7 +13,9 @@ const EntityCard = ({ entity, columnCount }) => {
 				<Card.Text className="entity-card-details">
 					{entity.description}
 				</Card.Text>
-				<Button variant="primary">View Recipe</Button>
+				<Link to={linkUrl}>
+					<Button variant="primary">View Recipe</Button>
+				</Link>
 			</Card.Body>
 		</Card>
 	);
