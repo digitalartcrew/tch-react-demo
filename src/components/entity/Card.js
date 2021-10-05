@@ -1,9 +1,9 @@
 import Card from "react-bootstrap/Card";
 import Button from "react-bootstrap/Button";
 
-const EntityCard = ({ entity }) => {
+const EntityCard = ({ entity, columnClass }) => {
 	return (
-		<Card className="col-3">
+		<Card className={columnClass}>
 			<Card.Img variant="top" src={entity.imageSrc} />
 			<Card.Body>
 				<Card.Title>{entity.title}</Card.Title>
