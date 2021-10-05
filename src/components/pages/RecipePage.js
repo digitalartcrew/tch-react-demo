@@ -8,7 +8,16 @@ const RecipePage = () => {
 	const { recipeId } = useParams();
 	const [recipe, setRecipe] = useState({
 		title: "Test",
-		imageSrc: "",
+		media: {
+			video: "",
+			imageUrls: [],
+			preparatimeTime: "",
+			cookTime: "",
+			totalServings: "",
+			ingredients: [],
+			directions: [],
+			additionalTips: "",
+		},
 		description: "",
 	});
 
@@ -20,9 +29,22 @@ const RecipePage = () => {
 
 	return (
 		<Container>
-			<h1>{recipe.title}</h1>
-			<Image src={recipe.imageSrc}></Image>
-			<p>{recipe.description}</p>
+			{
+				// Add a {recipe.title}
+				//  Recipe Header Container
+				// Add media container
+				// if video display video as main image else display first image {recipe.media.video}
+				// render a carousel of images {recipe.media.images}
+				// Quick Details Container
+				// recipe.preparationTime
+				// recipe.cookTime
+				// recipe.totalTime = recipe.preparationTime + recipe.cookTime
+				// recipe.totalServings
+				// Add ingredients container
+				// Add Directions container
+				// Additional Tips & Advice Container
+				// Reviews container
+			}
 		</Container>
 	);
 };
