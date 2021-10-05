@@ -1,12 +1,16 @@
+import Card from "react-bootstrap/Card";
+import Button from "react-bootstrap/Button";
+
 const EntityCard = ({ entity }) => {
 	return (
-		<div className="entity-card">
-			<img src={entity.imageSrc} alt="placeholder card" />
-			<div className="entity-card-details">
-				<h5>{entity.title}</h5>
-				<p className="entity-card-description">{entity.description}</p>
-			</div>
-		</div>
+		<Card style={{ width: "18rem" }}>
+			<Card.Img variant="top" src={entity.imageSrc} />
+			<Card.Body>
+				<Card.Title>{entity.title}</Card.Title>
+				<Card.Text>{entity.description}</Card.Text>
+				<Button variant="primary">View Recipe</Button>
+			</Card.Body>
+		</Card>
 	);
 };
 
