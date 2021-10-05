@@ -1,73 +1,111 @@
-// import { withRouter } from 'react-router-dom'; // <--- import `withRouter`. We will use this in the bottom of our file.
-import recipes from "../../recipes";
 import React, { useState } from "react";
+import { Button } from "react-bootstrap";
+import Form from "react-bootstrap/Form";
 import store from "../../store";
 
 const AddRecipeForm = ({ history }) => {
-  const [formData, setFormData] = useState({
-    imageSrc: "",
-    title: "",
-    description: "",
-  });
+	const [formData, setFormData] = useState({
+		imgUrls: [],
+		title: "",
+		description: "",
+		ingredients: [],
+		tips: [],
+		tools: [],
+	});
 
-  const handleSubmit = () => {
-    console.log(store.getState());
+	const handleSubmit = () => {
+		console.log(store.getState());
 
-    store.dispatch({
-      type: "recipes/recipeAdded",
-      payload: {
-        id: 5,
-        imageSrc: "https://via.placeholder.com/200x200",
-        title: "The Best Chicken",
-        description:
-          "Lorem ipsum, dolor sit amet consectetur adipisicing elit. Enim, vero quisquam magnam voluptatibus minus asperiores excepturi distinctio voluptas! Sint at facilis alias suscipit aut quia ea in sequi quisquam nulla!",
-      },
-    });
+		store.dispatch({ type: "add-ingredients", payload: formData });
+		console.log(store.getState());
+	};
 
-    console.log(store.getState());
+	return (
+		<>
+			<Form.Group controlId="formFile" className="mb-3">
+				<Form.Label>Upload Image</Form.Label>
+				<Form.Control
+					type="file"
+					onChange={(e) =>
+						setFormData({
+							...formData,
+							images: [...formData.images, e.target.value],
+						})
+					}
+				/>
+			</Form.Group>
 
-    // formData.id = recipes[recipes.length - 1].id + 1;
+			<Form.Group className="mb-3" controlId="exampleForm.ControlTextarea1">
+				<Form.Label>Title of Recipe</Form.Label>
+				<Form.Control
+					as="input"
+					rows={3}
+					onChange={(e) =>
+						setFormData({ ...formData, description: e.target.value })
+					}
+				/>
+			</Form.Group>
 
-    // recipes.push({...formData});
-    // console.log("Updated recipes", recipes );
-  };
+			<Form.Group className="mb-3" controlId="exampleForm.ControlTextarea1">
+				<Form.Label>Description of recipe</Form.Label>
+				<Form.Control
+					as="textarea"
+					rows={3}
+					onChange={(e) =>
+						setFormData({ ...formData, description: e.target.value })
+					}
+				/>
+			</Form.Group>
 
-  return (
-    <form onSubmit={() => handleSubmit()}>
-      <label>
-        Image:
-        <input
-          type="text"
-          name="imageSrc"
-          value={formData.imageSrc}
-          onChange={(e) =>
-            setFormData({ ...formData, imageSrc: e.target.value })
-          }
-        />
-      </label>
-      <label>
-        Title:
-        <input
-          type="text"
-          name="title"
-          value={formData.title}
-          onChange={(e) => setFormData({ ...formData, title: e.target.value })}
-        />
-      </label>
-      <label>
-        Description:
-        <input
-          type="text"
-          name="description"
-          value={formData.description}
-          onChange={(e) =>
-            setFormData({ ...formData, description: e.target.value })
-          }
-        />
-      </label>
-      <button type="submit">Submit</button>
-    </form>
-  );
+			<Form.Group className="mb-3" controlId="exampleForm.ControlTextarea1">
+				<Form.Label>Add Prepations Steps</Form.Label>
+				<Form.Control
+					as="input"
+					rows={3}
+					onChange={(e) =>
+						setFormData({ ...formData, description: e.target.value })
+					}
+				/>
+				<Button>Add Step</Button>
+			</Form.Group>
+
+			<Form.Group className="mb-3" controlId="exampleForm.ControlTextarea1">
+				<Form.Label>Add Tools</Form.Label>
+				<Form.Control
+					as="input"
+					rows={3}
+					onChange={(e) =>
+						setFormData({ ...formData, description: e.target.value })
+					}
+				/>
+				<Button>Add Tool</Button>
+			</Form.Group>
+
+			<Form.Group className="mb-3" controlId="exampleForm.ControlTextarea1">
+				<Form.Label>Add Ingredients</Form.Label>
+				<Form.Control
+					as="input"
+					rows={3}
+					onChange={(e) =>
+						setFormData({ ...formData, description: e.target.value })
+					}
+				/>
+				<Button>Add Ingredient</Button>
+			</Form.Group>
+
+			<Form.Group className="mb-3" controlId="exampleForm.ControlTextarea1">
+				<Form.Label>Additional Tips and Advice</Form.Label>
+				<Form.Control
+					as="textarea"
+					rows={3}
+					onChange={(e) =>
+						setFormData({ ...formData, description: e.target.value })
+					}
+				/>
+			</Form.Group>
+			<Button onClick={() => handleSubmit()}>Submit Form</Button>
+		</>
+	);
 };
 
 export default AddRecipeForm;
