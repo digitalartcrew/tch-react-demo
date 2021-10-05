@@ -1,12 +1,10 @@
-import EntityCard from "../cards/EntityCard";
+import EntityRow from "../entity/Row";
 
 const HomePage = ({ collection }) => {
 	return (
 		<div className="home-page-container">
 			<div className="card-container">
-				{collection.map((recipe) => (
-					<EntityCard entity={recipe} key={recipe.id} />
-				))}
+				<EntityRow collection={collection} />
 			</div>
 		</div>
 	);

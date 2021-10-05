@@ -1,9 +1,10 @@
 import "./App.css";
-import NavBar from "./components/nav/NavBar";
 import AddRecipePage from "./components/pages/AddRecipePage";
 import HomePage from "./components/pages/HomePage";
+import Container from "react-bootstrap/Container";
 import React, { useState, useEffect } from "react";
 import { BrowserRouter as Router, Switch, Route } from "react-router-dom";
+import MainNavBar from "./components/nav/MainNavBar";
 
 const App = () => {
 	const [recipeCollection, setRecipeCollection] = useState([]);
@@ -31,8 +32,8 @@ const App = () => {
 
 	return (
 		<Router>
-			<div className="App">
-				<NavBar />
+			<Container className="App">
+				<MainNavBar />
 				<Switch>
 					<Route path="/add-recipe">
 						<AddRecipePage />
@@ -41,7 +42,7 @@ const App = () => {
 						<HomePage collection={recipeCollection} />
 					</Route>
 				</Switch>
-			</div>
+			</Container>
 		</Router>
 	);
 };
