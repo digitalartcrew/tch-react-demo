@@ -3,9 +3,11 @@
 }
 
 .entity-card {
-	padding: 0;
-	width: 20%;
-	margin: 10px;
+	padding: 10px;
+}
+
+.entity-card-container {
+	padding: 10px;
 }
 
 .entity-card-details {

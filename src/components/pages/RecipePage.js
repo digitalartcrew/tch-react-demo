@@ -23,8 +23,8 @@ const RecipePage = () => {
 				"https://via.placeholder.com/10x10",
 				"https://via.placeholder.com/10x10",
 			],
-			preparatimeTime: "20 min",
-			cookTime: "30 min",
+			preparationTime: 20,
+			cookTime: 30,
 			totalServings: "8 servings",
 			ingredients: [
 				"First ingredient",
@@ -93,9 +93,9 @@ const RecipePage = () => {
 				</Container> */}
 				<Container className="recipe-details-container">
 					<ul>
-						<li> Preparation Time: {recipe.preparationTime}</li>
-						<li> Cook Time: {recipe.cookTime}</li>
-						<li> Total Time: {recipe.preparationTime + recipe.cookTime}</li>
+						<li> Preparation Time: {recipe.preparationTime} min</li>
+						<li> Cook Time: {recipe.cookTime} min</li>
+						<li> Total Time: {recipe.preparationTime + recipe.cookTime} min</li>
 						<li> Total Serving: {recipe.totalServings}</li>
 					</ul>
 				</Container>
