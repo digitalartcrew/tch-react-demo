@@ -7,7 +7,7 @@ const EntityCard = ({ entity, columnCount, linkUrl }) => {
 
 	return (
 		<Card className={columnClass}>
-			<Card.Img variant="top" src={entity.imageSrc} />
+			<Card.Img variant="top" src={entity.imgSrc} />
 			<Card.Body>
 				<Card.Title>{entity.title}</Card.Title>
 				<Card.Text className="entity-card-details">
