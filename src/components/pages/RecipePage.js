@@ -1,8 +1,9 @@
 import Container from "react-bootstrap/Container";
-import Image from "react-bootstrap/Image";
 import { useParams } from "react-router";
 import React, { useState, useEffect } from "react";
 import { getRecipe } from "../../api/recipe-api";
+import { Image } from "react-bootstrap";
+import FiveStarRating from "../five-star-rating";
 
 const RecipePage = () => {
 	const { recipeId } = useParams();
@@ -29,22 +30,30 @@ const RecipePage = () => {
 
 	return (
 		<Container>
-			{
-				// Add a {recipe.title}
-				//  Recipe Header Container
-				// Add media container
-				// if video display video as main image else display first image {recipe.media.video}
-				// render a carousel of images {recipe.media.images}
-				// Quick Details Container
-				// recipe.preparationTime
-				// recipe.cookTime
-				// recipe.totalTime = recipe.preparationTime + recipe.cookTime
-				// recipe.totalServings
-				// Add ingredients container
-				// Add Directions container
-				// Additional Tips & Advice Container
-				// Reviews container
-			}
+			<h1>{recipe.title}</h1>
+			<FiveStarRating rating={recipe.rating} />
+			{/* <p>{recipe.author}</p>
+			<Container className="recipe-header">
+				<Container className="media-container">
+					{recipe.media?.video ? (
+						<VideoPlayer />
+					) : (
+						<Image src={recipe.imageUrls[0]} />
+					)}
+					<FoodImageCarousel images={recipe.imageUrls} />
+				</Container>
+				<Container className="recipe-details-container">
+					<ul>
+						<li> Preparation Time: {recipe.preparationTime}</li>
+						<li> Cook Time: {recipe.cookTime}</li>
+						<li> Total Time: {recipe.preparationTime + recipe.cookTime}</li>
+						<li> Total Serving: {recipe.totalServings}</li>
+					</ul>
+				</Container>
+			</Container>
+			<Container className="ingredients-container"></Container>
+			<Container className="additional-container"></Container>
+			<Container className="review-container"></Container> */}
 		</Container>
 	);
 };
