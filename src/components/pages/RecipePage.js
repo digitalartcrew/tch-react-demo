@@ -100,7 +100,20 @@ const RecipePage = () => {
 					</ul>
 				</Container>
 			</Container>
-			<Container className="ingredients-container"></Container>
+			<Container className="ingredients-container">
+				<ul>
+					{recipe.ingredients?.map((ingredient, index) => (
+						<li key={index}>{ingredient}</li>
+					))}
+				</ul>
+			</Container>
+			<Container className="directions-container">
+				<ul>
+					{recipe.directions?.map((direction, index) => (
+						<li key={index}>{direction}</li>
+					))}
+				</ul>
+			</Container>
 			<Container className="description-container">
 				{recipe.description}
 			</Container>
