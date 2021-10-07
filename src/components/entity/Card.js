@@ -2,6 +2,7 @@ import Card from "react-bootstrap/Card";
 import Button from "react-bootstrap/Button";
 import Container from "react-bootstrap/Container";
 import { Link } from "react-router-dom";
+import FiveStarRating from "../five-star-rating";
 
 const EntityCard = ({ entity, columnCount, linkUrl }) => {
 	const columnClass = `entity-card col-md-${12 / columnCount}`;
@@ -13,6 +14,7 @@ const EntityCard = ({ entity, columnCount, linkUrl }) => {
 				<Card.Body>
 					<Card.Title>{entity.title}</Card.Title>
 					<Card.Text className="entity-card-details">
+						<FiveStarRating />
 						{entity.description}
 					</Card.Text>
 					<Link to={linkUrl}>
