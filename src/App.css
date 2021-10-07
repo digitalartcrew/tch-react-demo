@@ -15,3 +15,15 @@
 .entity-card-description {
 	text-overflow: ellipsis;
 }
+
+.recipe-header {
+	margin-bottom: 40px;
+}
+
+.ingredients-container {
+	margin-bottom: 20px;
+}
+
+.directions-container {
+	margin-bottom: 20px;
+}

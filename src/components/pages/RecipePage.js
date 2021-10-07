@@ -1,10 +1,12 @@
 import Container from "react-bootstrap/Container";
 import Accordion from "react-bootstrap/Accordion";
+import Image from "react-bootstrap/Image";
 import { useParams } from "react-router";
 import React, { useState, useEffect } from "react";
 import { getRecipe } from "../../api/recipe-api";
 import FiveStarRating from "../five-star-rating";
 import ReviewCard from "../review-card";
+import { Row } from "react-bootstrap";
 // import recipesReducer from "../forms/slices/recipes/recipesSlice";
 
 const RecipePage = () => {
@@ -17,7 +19,7 @@ const RecipePage = () => {
 			video:
 				"http://commondatastorage.googleapis.com/gtv-videos-bucket/sample/BigBuckBunny.mp4",
 			imageUrls: [
-				"https://via.placeholder.com/10x10",
+				"https://via.placeholder.com/300x300",
 				"https://via.placeholder.com/10x10",
 				"https://via.placeholder.com/10x10",
 				"https://via.placeholder.com/10x10",
@@ -82,47 +84,46 @@ const RecipePage = () => {
 			<h1>{recipe.title}</h1>
 			<FiveStarRating rating={recipe.rating} />
 			<p>{recipe.author}</p>
-			<Container className="recipe-header">
-				{/* <Container className="media-container">
-					{recipe.media?.video ? (
-						<VideoPlayer />
-					) : (
-						<Image src={recipe.imageUrls[0]} />
-					)}
-					<FoodImageCarousel images={recipe.imageUrls} />
-				</Container> */}
-				<Container className="recipe-details-container">
+			<Row className="recipe-header">
+				<div className="col-md-3">
+					<Image src={recipe.media.imageUrls[0]} width="100%" />
+				</div>
+
+				<div className="col-md-3">
 					<ul>
 						<li> Preparation Time: {recipe.preparationTime} min</li>
 						<li> Cook Time: {recipe.cookTime} min</li>
 						<li> Total Time: {recipe.preparationTime + recipe.cookTime} min</li>
 						<li> Total Serving: {recipe.totalServings}</li>
 					</ul>
-				</Container>
-			</Container>
-			<Container className="ingredients-container">
+				</div>
+			</Row>
+			<Row className="ingredients-container">
+				<h3>Ingredients</h3>
 				<ul>
 					{recipe.ingredients?.map((ingredient, index) => (
 						<li key={index}>{ingredient}</li>
 					))}
 				</ul>
-			</Container>
-			<Container className="directions-container">
+			</Row>
+			<Row className="directions-container">
+				<h3>Instructions</h3>
 				<ul>
 					{recipe.directions?.map((direction, index) => (
 						<li key={index}>{direction}</li>
 					))}
 				</ul>
-			</Container>
-			<Container className="description-container">
-				{recipe.description}
-			</Container>
-			<Container className="review-container">
-				<Accordion defaultActiveKey="0"></Accordion>
+			</Row>
+			<Row className="description-container">
+				<h3>Additonal Tips & Advice</h3>
+				<p>{recipe.description}</p>
+			</Row>
+			<Row className="review-container">
+				<h3>Reviews</h3>
 				{recipe.reviews?.map((review) => (
-					<ReviewCard review={review} key={review.id} />
+					<ReviewCard className="col-md-3" review={review} key={review.id} />
 				))}
-			</Container>
+			</Row>
 		</Container>
 	);
 };
