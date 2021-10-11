@@ -7,7 +7,7 @@ const InputListFormRow = ({ rowCount, handleChange, controlId }) => {
 	return (
 		<Row className="input-list-form-row">
 			<div className="input-list-form-row__inputs">
-				<div className="dot">{rowCount + 1}</div>
+				<div className="dot">{rowCount}</div>
 				<div className="input-list-form-row__input">
 					<Form.Group controlId={`inputListFormRow.${controlId}`}>
 						<Form.Control as="input" rows={3} onChange={handleChange} />
