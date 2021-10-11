@@ -1,3 +1,8 @@
+.action-btn {
+	width: 15%;
+	margin-right: 10px;
+}
+
 .navigation-bar li {
 	display: inline;
 }
@@ -26,4 +31,22 @@
 
 .directions-container {
 	margin-bottom: 20px;
+}
+
+.recipe-form-row {
+	margin-bottom: 5px;
+}
+
+.dot {
+	height: 35px;
+	width: 35px;
+	padding-top: 5px;
+	background-color: #bbb;
+	border-radius: 50%;
+	display: inline-block;
+	text-align: center;
+}
+
+.ingredient-input-row {
+	margin-bottom: 10px;
 }

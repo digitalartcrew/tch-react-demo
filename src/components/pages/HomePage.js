@@ -5,9 +5,10 @@ import { getRecipes } from "../../api/recipe-api";
 
 const HomePage = () => {
 	const [recipeCollection, setRecipeCollection] = useState([]);
+	let positionCount = 0;
 
 	const columnCount = 4;
-	let positionCount = 0;
+
 	const rowCount = recipeCollection.length / columnCount;
 
 	useEffect(() => {
