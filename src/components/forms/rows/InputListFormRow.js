@@ -1,13 +1,12 @@
 import Button from "react-bootstrap/Button";
 import Row from "react-bootstrap/Row";
 import Form from "react-bootstrap/Form";
-import { BsPencilSquare, BsXSquareFill } from "react-icons/bs";
+import { BsXLg } from "react-icons/bs";
 
-const InputListFormRow = ({ rowCount, handleChange, controlId }) => {
+const InputListFormRow = ({ handleChange, controlId, deleteHandler }) => {
 	return (
 		<Row className="input-list-form-row">
 			<div className="input-list-form-row__inputs">
-				<div className="dot">{rowCount}</div>
 				<div className="input-list-form-row__input">
 					<Form.Group controlId={`inputListFormRow.${controlId}`}>
 						<Form.Control as="input" rows={3} onChange={handleChange} />
@@ -15,11 +14,13 @@ const InputListFormRow = ({ rowCount, handleChange, controlId }) => {
 				</div>
 
 				<div className="input-list-form-row__btn-container">
-					<Button className="input-list-form-row__action-btn">
-						<BsPencilSquare />
-					</Button>
-					<Button className="input-list-form-row__action-btn">
-						<BsXSquareFill />
+					<Button
+						variant="danger"
+						onClick={deleteHandler}
+						className="input-list-form-row__action-btn"
+					>
+						{" "}
+						<BsXLg />
 					</Button>
 				</div>
 			</div>

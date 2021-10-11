@@ -7,7 +7,7 @@ import Form from "react-bootstrap/Form";
 import store from "../../store";
 import InputListFormRowContainer from "./rows/InputListFormRowContainer";
 
-const AddRecipeForm = ({ history, name }) => {
+const AddRecipeForm = ({ history, name, controlId }) => {
 	const [recipeFormData, setRecipeFormData] = useState({
 		title: "",
 		author: name,
@@ -19,7 +19,7 @@ const AddRecipeForm = ({ history, name }) => {
 		cookTime: 0,
 		ingredients: [],
 		instructions: [],
-		needs: [],
+		supplies: [],
 		description: "",
 	});
 
@@ -33,7 +33,7 @@ const AddRecipeForm = ({ history, name }) => {
 	return (
 		<Container>
 			<Row className="recipe-form-row">
-				<Form.Group controlId="recipeForm.Tite">
+				<Form.Group controlId={`recipeForm.${controlId}`}>
 					<Form.Label>Title of Recipe</Form.Label>
 					<Form.Control
 						as="input"
@@ -141,6 +141,28 @@ const AddRecipeForm = ({ history, name }) => {
 					/>
 				</Form.Group>
 			</Row>
+
+			<InputListFormRowContainer
+				titleOfRow="List of instructions"
+				addBtnTitle="Add Instruction"
+				handleChange={(e) =>
+					setRecipeFormData({
+						...recipeFormData,
+						instructions: [...recipeFormData.instructions, e.target.value],
+					})
+				}
+			/>
+
+			<InputListFormRowContainer
+				titleOfRow="List of supplies"
+				addBtnTitle="Add Supply"
+				handleChange={(e) =>
+					setRecipeFormData({
+						...recipeFormData,
+						supplies: [...recipeFormData.supplies, e.target.value],
+					})
+				}
+			/>
 
 			<InputListFormRowContainer
 				titleOfRow="List of ingredients"
