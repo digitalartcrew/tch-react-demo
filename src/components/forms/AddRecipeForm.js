@@ -5,6 +5,7 @@ import Image from "react-bootstrap/Image";
 import Row from "react-bootstrap/Row";
 import Form from "react-bootstrap/Form";
 import store from "../../store";
+import InputListFormRowContainer from "./rows/InputListFormRowContainer";
 
 const AddRecipeForm = ({ history, name }) => {
 	const [recipeFormData, setRecipeFormData] = useState({
@@ -141,34 +142,16 @@ const AddRecipeForm = ({ history, name }) => {
 				</Form.Group>
 			</Row>
 
-			<Row className="recipe-form-row">
-				<h4>List of ingredients</h4>
-				<Row className="ingredient-input-row">
-					<div className="dot col-1">1</div>
-					<div className="col-7">
-						<Form.Group controlId="recipeForm.Ingredients">
-							<Form.Control
-								as="input"
-								rows={3}
-								onChange={(e) =>
-									setRecipeFormData({
-										...recipeFormData,
-										ingredients: [
-											...recipeFormData.ingredients,
-											e.target.value,
-										],
-									})
-								}
-							/>
-						</Form.Group>
-					</div>
-
-					<Button className="col-2 action-btn">Edit</Button>
-					<Button className="col-2 action-btn">Delete</Button>
-				</Row>
-
-				<Button className="col-md-2">Add Ingredient</Button>
-			</Row>
+			<InputListFormRowContainer
+				titleOfRow="List of ingredients"
+				addBtnTitle="Add Ingredient"
+				handleChange={(e) =>
+					setRecipeFormData({
+						...recipeFormData,
+						ingredients: [...recipeFormData.ingredients, e.target.value],
+					})
+				}
+			/>
 
 			<Row className="recipe-form-row">
 				<Form.Group controlId="recipeForm.PreparationTime">

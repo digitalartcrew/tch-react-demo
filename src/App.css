@@ -50,3 +50,15 @@
 .ingredient-input-row {
 	margin-bottom: 10px;
 }
+
+.input-list-form-row__inputs {
+	display: flex;
+	flex-direction: row;
+	justify-content: space-between;
+}
+
+.input-list-form-row__input {
+	flex: 1;
+	padding-right: 2%;
+	padding-left: 2%;
+}
