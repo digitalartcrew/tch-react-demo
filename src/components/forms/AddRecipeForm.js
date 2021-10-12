@@ -24,10 +24,10 @@ const AddRecipeForm = ({ history, name, controlId }) => {
 	});
 
 	const handleSubmit = () => {
-		// console.log(store.getState());
+		console.log("Recipe form data: ", recipeFormData);
 
-		store.dispatch({ type: "add-ingredients", payload: recipeFormData });
-		console.log(store.getState());
+		// store.dispatch({ type: "add-ingredients", payload: recipeFormData });
+		// console.log(store.getState());
 	};
 
 	return (
