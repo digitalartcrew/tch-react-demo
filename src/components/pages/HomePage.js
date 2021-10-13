@@ -3,8 +3,13 @@ import EntityCard from "../entity/Card";
 import React, { useState, useEffect } from "react";
 import { getRecipes } from "../../api/recipe-api";
 
+// const state = {
+//   users: [{name: "Nathan", age: 30}, {name: "Donte", age: 35}]
+// }
+
 const HomePage = () => {
 	const [recipeCollection, setRecipeCollection] = useState([]);
+
 	let positionCount = 0;
 
 	const columnCount = 4;
@@ -14,7 +19,11 @@ const HomePage = () => {
 	useEffect(() => {
 		getRecipes()
 			.then((response) => response.json())
-			.then((recipes) => setRecipeCollection(recipes));
+			.then((recipes) => {
+				debugger;
+
+				setRecipeCollection(recipes);
+			});
 	}, []);
 
 	return (
