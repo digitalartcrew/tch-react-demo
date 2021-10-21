@@ -10,7 +10,7 @@ const MainNavBar = () => {
 	return (
 		<Navbar>
 			<Container>
-				<Navbar.Brand href="/">Tech, Chicken and HS</Navbar.Brand>
+				<Navbar.Brand href="/">Tech, Chicken and Hot Sauce</Navbar.Brand>
 				<Navbar.Toggle />
 				<Form className="d-flex">
 					<FormControl

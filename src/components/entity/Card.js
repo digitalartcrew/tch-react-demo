@@ -25,5 +25,4 @@ const EntityCard = ({ entity, columnCount, linkUrl }) => {
 		</Container>
 	);
 };
-
 export default EntityCard;
