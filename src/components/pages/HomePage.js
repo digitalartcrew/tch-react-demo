@@ -1,30 +1,31 @@
 import EntityRow from "../entity/Row";
 import EntityCard from "../entity/Card";
-import React, { useState, useEffect } from "react";
+import React, { useEffect } from "react";
+import { useDispatch, useSelector } from "react-redux";
 import { getRecipes } from "../../api/recipe-api";
+import { setRecipes } from "../../reducers/recipeSlice";
 
 const HomePage = () => {
-	const [recipeCollection, setRecipeCollection] = useState([]);
+	const recipes = useSelector((state) => state.value);
+	const dispatch = useDispatch();
 
 	let positionCount = 0;
 
 	const columnCount = 4;
 
-	const rowCount = recipeCollection.length / columnCount;
+	const rowCount = recipes.length / columnCount;
 
 	useEffect(() => {
 		getRecipes()
 			.then((response) => response.json())
-			.then((recipes) => {
-				setRecipeCollection(recipes);
-			});
-	}, []);
+			.then((recipes) => dispatch(setRecipes(recipes)));
+	}, [dispatch]);
 
 	return (
 		<div className="home-page-container">
 			{Array.from(Array(rowCount)).map((x, index) => {
 				const newCollection = [
-					...recipeCollection.slice(positionCount, positionCount + columnCount),
+					...recipes.slice(positionCount, positionCount + columnCount),
 				];
 
 				positionCount = positionCount + columnCount;
