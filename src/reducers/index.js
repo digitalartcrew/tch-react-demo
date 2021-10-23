@@ -1,7 +1,4 @@
+import { combineReducers } from "redux";
 import recipeSlicereducers from "./recipeSlice";
 
-const reducers = {
-	recipeSlicereducers,
-};
-
-export default reducers;
+export default combineReducers({ recipeSlicereducers });

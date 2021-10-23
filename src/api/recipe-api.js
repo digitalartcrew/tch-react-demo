@@ -1,5 +1,5 @@
 export const getRecipes = () => {
-	return fetch("/data/recipes.json", {
+	return fetch("/api/recipes", {
 		headers: {
 			"Content-Type": "application/json",
 			Accept: "application/json",
