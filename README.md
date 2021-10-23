@@ -1,3 +1,43 @@
+# ReactJS CRUD Tutorial Using Express and MongoDB
+
+**Author Donte Burney**
+
+In this tutorial you will build a CRUD application where a user create an account and add recipes.
+
+## Building Basic UI in React
+
+1. Inital App Set Up
+2. Create Pages
+3. Create Components - with hard coded values
+
+## React Router
+
+1. Set up React Router
+2. Pass page components into route switch
+3. Update Navigation links
+
+## State
+
+1. Add state to each page
+
+## Props
+
+1. Pass props into components
+
+## React Hooks
+
+## React-Redux
+
+## React ContextAPI
+
+## User Authentication
+
+## NodeJS
+
+## Express
+
+## MongoDB
+
 # Getting Started with Create React App
 
 This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).

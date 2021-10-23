@@ -4,8 +4,9 @@ import Container from "react-bootstrap/Container";
 import Image from "react-bootstrap/Image";
 import Row from "react-bootstrap/Row";
 import Form from "react-bootstrap/Form";
-// import store from "../../store";
 import InputListFormRowContainer from "./rows/InputListFormRowContainer";
+import { useDispatch } from "react-redux";
+import { createRecipe } from "../../reducers/recipeSlice";
 
 const AddRecipeForm = ({ history, name, controlId }) => {
 	const [recipeFormData, setRecipeFormData] = useState({
@@ -23,9 +24,11 @@ const AddRecipeForm = ({ history, name, controlId }) => {
 		description: "",
 	});
 
-	const handleSubmit = () => {
-		console.log("Recipe form data: ", recipeFormData);
-	};
+	const dispatch = useDispatch();
+
+	// const handleSubmit = () => {
+	// 	console.log("Recipe form data: ", recipeFormData);
+	// };
 
 	return (
 		<Container>
@@ -236,7 +239,9 @@ const AddRecipeForm = ({ history, name, controlId }) => {
 				</Form.Group>
 			</Row>
 
-			<Button onClick={() => handleSubmit()}>Submit Form</Button>
+			<Button onClick={() => dispatch(createRecipe(recipeFormData))}>
+				Submit Form
+			</Button>
 		</Container>
 	);
 };

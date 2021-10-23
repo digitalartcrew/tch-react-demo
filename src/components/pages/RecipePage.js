@@ -4,20 +4,20 @@ import Image from "react-bootstrap/Image";
 import Form from "react-bootstrap/Form";
 import Modal from "react-bootstrap/Modal";
 import { useParams } from "react-router";
-import React, { useState, useEffect } from "react";
-import { useDispatch } from "react-redux";
-import { getRecipe } from "../../api/recipe-api";
-import FiveStarRating from "../five-star-rating";
+import React, { useState } from "react";
+import { useDispatch, useSelector } from "react-redux";
+// import FiveStarRating from "../five-star-rating";
 import ReviewCard from "../review-card";
 import { Row } from "react-bootstrap";
-import {
-	createRecipe,
-	updateRecipe,
-	removeRecipe,
-} from "../../reducers/recipeSlice";
+import { createRecipe, removeRecipe } from "../../reducers/recipeSlice";
 
 const RecipePage = () => {
 	const { recipeId } = useParams();
+	const recipe = useSelector((state) =>
+		state.value.find((recipe) => recipe.id === parseInt(recipeId))
+	);
+
+	const [updatedRecipe, setUpdatedRecipe] = useState([]);
 	const [isUpdating, setIsUpdating] = useState(false);
 
 	const dispatch = useDispatch();
@@ -25,18 +25,15 @@ const RecipePage = () => {
 	const [show, setShow] = useState(false);
 
 	const handleClose = () => setShow(false);
+	const handleDelete = () => {
+		dispatch(removeRecipe(recipeId));
+		setShow(false);
+	};
 	const handleShow = () => setShow(true);
-
-	const [recipe, setRecipe] = useState({});
 
 	const editRecipe = () => {
 		setIsUpdating(true);
 		dispatch(createRecipe());
-	};
-
-	const deleteRecipe = () => {
-		handleShow();
-		dispatch(removeRecipe());
 	};
 
 	const updateRecipe = () => {
@@ -45,12 +42,6 @@ const RecipePage = () => {
 		setIsUpdating(false);
 	};
 
-	useEffect(() => {
-		getRecipe(recipeId).then((recipe) => {
-			setRecipe(recipe);
-		});
-	}, [recipeId, recipe]);
-
 	return (
 		<Container>
 			<h1>
@@ -58,32 +49,36 @@ const RecipePage = () => {
 					<Form.Group controlId={`inputListFormRow.RecipeTitle`}>
 						<Form.Control
 							as="input"
-							placeholder={recipe.title}
-							onChange={(e) => setRecipe({ ...recipe, title: e.target.value })}
+							placeholder={recipe?.title}
+							onChange={(e) =>
+								setUpdatedRecipe({ ...updatedRecipe, title: e.target.value })
+							}
 						/>
 					</Form.Group>
 				) : (
-					recipe.title
+					recipe?.title
 				)}
 			</h1>
-			<FiveStarRating rating={recipe.rating} />
+			{/* <FiveStarRating rating={recipe?.rating} /> */}
 			<p>
 				{" "}
 				{isUpdating ? (
 					<Form.Group controlId={`inputListFormRow.RecipeAuthor`}>
 						<Form.Control
 							as="input"
-							placeholder={recipe.author}
-							onChange={(e) => setRecipe({ ...recipe, author: e.target.value })}
+							placeholder={recipe?.author}
+							onChange={(e) =>
+								setUpdatedRecipe({ ...updatedRecipe, author: e.target.value })
+							}
 						/>
 					</Form.Group>
 				) : (
-					recipe.author
+					recipe?.author
 				)}
 			</p>
 			<Row className="recipe-header">
 				<div className="col-md-4">
-					<Image src={recipe.media.imageUrls[0]} width="100%" />
+					<Image src={recipe?.media?.imageUrls[0]} width="100%" />
 				</div>
 
 				<div className="col-md-4">
@@ -98,14 +93,17 @@ const RecipePage = () => {
 									<Form.Control
 										as="input"
 										rows={3}
-										placeholder={recipe.preparationTime}
+										placeholder={recipe?.preparationTime}
 										onChange={(e) =>
-											setRecipe({ ...recipe, preparationTime: e.target.value })
+											setUpdatedRecipe({
+												...updatedRecipe,
+												preparationTime: e.target.value,
+											})
 										}
 									/>
 								</Form.Group>
 							) : (
-								recipe.preparationTime
+								recipe?.preparationTime
 							)}{" "}
 							min
 						</li>
@@ -117,18 +115,24 @@ const RecipePage = () => {
 									<Form.Control
 										as="input"
 										rows={3}
-										placeholder={recipe.cookTime}
+										placeholder={recipe?.cookTime}
 										onChange={(e) =>
-											setRecipe({ ...recipe, cookTime: e.target.value })
+											setUpdatedRecipe({
+												...updatedRecipe,
+												cookTime: e.target.value,
+											})
 										}
 									/>
 								</Form.Group>
 							) : (
-								recipe.cookTime
+								recipe?.cookTime
 							)}{" "}
 							min
 						</li>
-						<li> Total Time: {recipe.preparationTime + recipe.cookTime} min</li>
+						<li>
+							{" "}
+							Total Time: {recipe?.preparationTime + recipe?.cookTime} min
+						</li>
 						<li>
 							{" "}
 							Total Serving:{" "}
@@ -137,14 +141,17 @@ const RecipePage = () => {
 									<Form.Control
 										as="input"
 										rows={3}
-										placeholder={recipe.totalServings}
+										placeholder={recipe?.totalServings}
 										onChange={(e) =>
-											setRecipe({ ...recipe, totalServings: e.target.value })
+											setUpdatedRecipe({
+												...updatedRecipe,
+												totalServings: e.target.value,
+											})
 										}
 									/>
 								</Form.Group>
 							) : (
-								recipe.totalServings
+								recipe?.totalServings
 							)}
 						</li>
 					</ul>
@@ -168,7 +175,7 @@ const RecipePage = () => {
 						<Button
 							variant="danger"
 							className="recipe-action-btn"
-							onClick={deleteRecipe}
+							onClick={handleShow}
 						>
 							Delete
 						</Button>
@@ -185,7 +192,7 @@ const RecipePage = () => {
 							<Button variant="secondary" onClick={handleClose}>
 								Close
 							</Button>
-							<Button variant="primary" onClick={handleClose}>
+							<Button variant="primary" onClick={handleDelete}>
 								Delete
 							</Button>
 						</Modal.Footer>
@@ -195,7 +202,7 @@ const RecipePage = () => {
 			<Row className="ingredients-container">
 				<h3>Ingredients</h3>
 				<ul>
-					{recipe.ingredients?.map((ingredient, index) => (
+					{recipe?.ingredients?.map((ingredient, index) => (
 						<li key={index}>
 							{" "}
 							{isUpdating ? (
@@ -205,7 +212,10 @@ const RecipePage = () => {
 										rows={3}
 										placeholder={ingredient}
 										onChange={(e) =>
-											setRecipe({ ...recipe, ingredient: e.target.value })
+											setUpdatedRecipe({
+												...updatedRecipe,
+												ingredient: e.target.value,
+											})
 										}
 									/>
 								</Form.Group>
@@ -219,7 +229,7 @@ const RecipePage = () => {
 			<Row className="directions-container">
 				<h3>Instructions</h3>
 				<ul>
-					{recipe.directions?.map((direction, index) => (
+					{recipe?.directions?.map((direction, index) => (
 						<li key={index}>
 							{" "}
 							{isUpdating ? (
@@ -229,7 +239,10 @@ const RecipePage = () => {
 										rows={3}
 										placeholder={direction}
 										onChange={(e) =>
-											setRecipe({ ...recipe, direction: e.target.value })
+											setUpdatedRecipe({
+												...updatedRecipe,
+												direction: e.target.value,
+											})
 										}
 									/>
 								</Form.Group>
@@ -249,20 +262,23 @@ const RecipePage = () => {
 							<Form.Control
 								as="input"
 								rows={3}
-								placeholder={recipe.description}
+								placeholder={recipe?.description}
 								onChange={(e) =>
-									setRecipe({ ...recipe, description: e.target.value })
+									setUpdatedRecipe({
+										...updatedRecipe,
+										description: e.target.value,
+									})
 								}
 							/>
 						</Form.Group>
 					) : (
-						recipe.description
+						recipe?.description
 					)}
 				</p>
 			</Row>
 			<Row className="review-container">
 				<h3>Reviews</h3>
-				{recipe.reviews?.map((review) => (
+				{recipe?.reviews?.map((review) => (
 					<ReviewCard className="col-md-3" review={review} key={review.id} />
 				))}
 			</Row>
@@ -270,4 +286,13 @@ const RecipePage = () => {
 	);
 };
 
-export default RecipePage;
+function areEqual(prevProps, nextProps) {
+	/*
+  return true if passing nextProps to render would return
+  the same result as passing prevProps to render,
+  otherwise return false
+  */
+	return true;
+}
+
+export default React.memo(RecipePage, areEqual);

@@ -5,12 +5,19 @@ import FormControl from "react-bootstrap/FormControl";
 import Nav from "react-bootstrap/Nav";
 import Button from "react-bootstrap/Button";
 import Container from "react-bootstrap/Container";
+import Image from "react-bootstrap/Image";
 
 const MainNavBar = () => {
 	return (
 		<Navbar>
 			<Container>
-				<Navbar.Brand href="/">Tech, Chicken and Hot Sauce</Navbar.Brand>
+				<Navbar.Brand href="/">
+					<Image
+						style={{ borderRadius: "50%", width: "50px" }}
+						src="./tch.png"
+					/>
+					<span>Tech, Chicken & Hot Sauce</span>
+				</Navbar.Brand>
 				<Navbar.Toggle />
 				<Form className="d-flex">
 					<FormControl

@@ -10,7 +10,7 @@ const recipeSlice = createSlice({
 			state.value = [...action.payload];
 		},
 		createRecipe: (state, action) => {
-			state.value = [...state.value, ...action.payload];
+			state.value = [...state.value, action.payload];
 		},
 		updateRecipe: (state, action) => {
 			state.value = [...state.value, ...action.payload];
