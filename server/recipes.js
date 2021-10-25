@@ -793,4 +793,4 @@ const recipes = [
 	},
 ];
 
-export default recipes;
+module.exports = recipes;

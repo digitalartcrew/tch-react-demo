@@ -1,27 +1,27 @@
-import recipes from "./../recipes";
+const recipes = require("./../recipes");
 
 const express = require("express");
 const router = express.Router();
 
 // GET recipes
-router.get("/recipes", (req, res) => {
+router.get("/", (req, res) => {
 	res.json(recipes);
 });
 // POST recipes/create
-router.post("/recipes/create/:userId", (req, res) => {
+router.post("/create/:userId", (req, res) => {
 	res.json(`New recipe: ${req.params.userId}`);
 });
 // UPDATE recipes/:recipeId
-router.put("/recipes/:recipeId/:userId", (req, res) => {
+router.put("/:recipeId/:userId", (req, res) => {
 	res.json(`Updating recipe: ${req.params.recipeId}`);
 });
 // GET recipes/:recipeId
-router.get("recipes/:recipeId/:userId", (req, res) => {
+router.get("/:recipeId/:userId", (req, res) => {
 	res.json(`Getting recipe: ${req.params.recipeId}`);
 });
 // DELETE recipes/:recipeId
-router.delete("/recipes/:recipeId", (req, res) => {
+router.delete("/:recipeId", (req, res) => {
 	res.json(`Deleting recipe: ${req.params.recipeId}`);
 });
 
-export default router;
+module.exports = router;
