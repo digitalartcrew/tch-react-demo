@@ -19,7 +19,7 @@ const MainNavBar = () => {
 					<span>Tech, Chicken & Hot Sauce</span>
 				</Navbar.Brand>
 				<Navbar.Toggle />
-				<Form className="d-flex">
+				{/* <Form className="d-flex">
 					<FormControl
 						type="search"
 						placeholder="Search"
@@ -27,13 +27,20 @@ const MainNavBar = () => {
 						aria-label="Search"
 					/>
 					<Button variant="outline-success">Search</Button>
-				</Form>
-				<Nav.Link href="/add-recipe">Add Recipe +</Nav.Link>
-				<Navbar.Collapse className="justify-content-end">
+				</Form> */}
+				<Nav.Link href="/podcast">Podcast</Nav.Link>
+				<Nav.Link href="/tutorials">Tutorial</Nav.Link>
+				<Nav.Link href="/tech-blog">Tech Blog</Nav.Link>
+				<Nav.Link href="/meetups">Meet Ups</Nav.Link>
+				<Nav.Link href="/recipes">Recipes</Nav.Link>
+				<Nav.Link href="/login">Login</Nav.Link>
+				<Nav.Link href="/signup">Sign Up</Nav.Link>
+				{/* <Nav.Link href="/add-recipe">Add Recipe +</Nav.Link> */}
+				{/* <Navbar.Collapse className="justify-content-end">
 					<Navbar.Text>
 						Signed in as: <a href="#login">Donte Burney</a>
 					</Navbar.Text>
-				</Navbar.Collapse>
+				</Navbar.Collapse> */}
 			</Container>
 		</Navbar>
 	);
