@@ -6,6 +6,7 @@ const morgan = require("morgan");
 const authRoutes = require("./routes/authRoutes");
 const recipeRoutes = require("./routes/recipeRoutes");
 const userRoutes = require("./routes/userRoutes");
+const podcastRoutes = require("./routes/podcastRoutes");
 
 //Passport
 const passport = require("passport");
@@ -38,6 +39,7 @@ app.use(morgan("tiny"));
 app.use(methodOverride("_method"));
 
 app.use("/api/auth/", authRoutes);
+app.use("/api/podcasts/", podcastRoutes);
 app.use("/api/recipes/", recipeRoutes);
 app.use("/api/users/", userRoutes);
 
