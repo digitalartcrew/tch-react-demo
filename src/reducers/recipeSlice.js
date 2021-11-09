@@ -3,21 +3,21 @@ import { createSlice } from "@reduxjs/toolkit";
 const recipeSlice = createSlice({
 	name: "recipe",
 	initialState: {
-		value: [],
+		recipes: [],
 	},
 	reducers: {
 		setRecipes: (state, action) => {
-			state.value = [...action.payload];
+			state.recipes = [...action.payload];
 		},
 		createRecipe: (state, action) => {
-			state.value = [...state.value, action.payload];
+			state.recipes = [...state.recipes, action.payload];
 		},
 		updateRecipe: (state, action) => {
-			state.value = [...state.value, ...action.payload];
+			state.recipes = [...state.recipes, ...action.payload];
 		},
 		removeRecipe: (state, action) => {
-			state.value = [
-				...state.value.filter((recipe) => recipe.id !== action.payload.id),
+			state.recipes = [
+				...state.recipes.filter((recipe) => recipe.id !== action.payload.id),
 			];
 		},
 	},

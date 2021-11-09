@@ -6,7 +6,7 @@ import { getRecipes } from "../../api/recipe-api";
 import { setRecipes } from "../../reducers/recipeSlice";
 
 const RecipesPages = () => {
-	const recipes = useSelector((state) => state.value);
+	const recipes = useSelector((state) => state.recipes);
 	const dispatch = useDispatch();
 
 	let positionCount = 0;
@@ -22,7 +22,7 @@ const RecipesPages = () => {
 	}, [dispatch]);
 
 	return (
-		<div className="home-page-container">
+		<div className="recipe-page-container">
 			{Array.from(Array(rowCount)).map((x, index) => {
 				const newCollection = [
 					...recipes.slice(positionCount, positionCount + columnCount),
