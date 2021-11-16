@@ -13,7 +13,7 @@ const RecipesPages = () => {
 
 	const columnCount = 4;
 
-	const rowCount = recipes.length / columnCount;
+	const rowCount = Math.ceil(recipes.length / columnCount);
 
 	useEffect(() => {
 		getRecipes()
